@@ -19,7 +19,7 @@
 body {
   display: flex;
   flex-direction: column;
-  min-width: 100vw;
+  min-width: 95vw;
   min-height: 100vh;
   margin: 0;
 }

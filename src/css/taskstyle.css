@@ -114,3 +114,14 @@ button:hover {
 .hidden {
   display: none !important;
 }
+
+.lm-btn {
+  display: block;
+  margin: 32px auto;
+  width: 125px;
+  height: 40px;
+}
+
+.lm-btn:hover {
+  background: #6c8cff;
+}

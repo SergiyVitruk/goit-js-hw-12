@@ -2,29 +2,41 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
-let lightbox = new SimpleLightbox('.gallery a');
 const loader = document.querySelector('.loader');
-const lmBtn = document.querySelector('.lm-btn');
+export const lmBtn = document.querySelector('.lm-btn');
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 export function createGallery(images) {
   const markup = images
     .map(
-      image => `
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => `
       <li class="gallery-item">
-        <a href="${image.largeImageURL}">
-          <img src="${image.webformatURL}" alt="${image.tags}"/>
+        <a href="${largeImageURL}">
+          <img src="${webformatURL}" alt="${tags}"/>
         </a>
         <div>
-          <p>Likes: ${image.likes}</p>
-          <p>Views: ${image.views}</p>
-          <p>Comments: ${image.comments}</p>
-          <p>Downloads: ${image.downloads}</p>
+          <p>Likes: ${likes}</p>
+          <p>Views: ${views}</p>
+          <p>Comments: ${comments}</p>
+          <p>Downloads: ${downloads}</p>
         </div>
       </li>`
     )
     .join('');
 
-  gallery.insertAdjacentHTML('afterbegin', markup);
+  gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 }
 
